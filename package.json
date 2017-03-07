@@ -1,0 +1,18 @@
+{
+  "name": "expressapp",
+  "version": "1.0.0",
+  "description": "express web app, node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "backend",
+    "express",
+    "node",
+    "js"
+  ],
+  "author": "Jacob Way",
+  "license": "ISC"
+}
