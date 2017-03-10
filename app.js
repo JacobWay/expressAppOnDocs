@@ -5,8 +5,8 @@ const port = 9999;
 const routing = require("./guide/routing.js");
 
 //app.use("/", routing);
-app.get("/ab*d", (reqest, response, next) => {
-    response.write("ab*d");
+app.get(/.*fly$/, (reqest, response, next) => {
+    response.write("/.*fly$/");
     response.end();
 });
 
