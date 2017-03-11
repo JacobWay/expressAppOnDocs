@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 9999;
 
+// require routerMiddleware from guide directory.
+const routerMiddleware = require("./guide/routerMiddleware.js");
+app.use(routerMiddleware.app, routerMiddleware.router);
+
 // require guide subapp from guide directory.
 const guideApp = require("./guide/app.js");
 app.use(guideApp);
