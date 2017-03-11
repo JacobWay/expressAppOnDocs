@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 9999;
 
+// require guide subapp from guide directory.
+const guideApp = require("./guide/app.js");
+app.use(guideApp);
+
 // require birds router.
 const birds = require("./guide/routing/birds.js");
 
