@@ -5,6 +5,10 @@ const port = 9999;
 // require birds router.
 const birds = require("./guide/routing/birds.js");
 
+// require middleware from middleware directory
+const myMiddleware = require("./middleware/myMiddleware.js");
+app.use(myMiddleware({option1: "1"}));
+
 //const routing = require("./guide/routing.js");
 
 //app.use("/", routing);
