@@ -36,11 +36,17 @@ function requestTime(request, response, next){
 
 app.use(requestTime);
 
-app.get("/", (request, response, next) => {
-  responseText = "";
-  responseText += "<p>Hello, express.</p>";
-  responseText += "<small>request time: " + request.requestTime + "</small>";
-  response.send(responseText);
+app.get("/app/:id", (request, response, next) => {
+  if(request.params.id === "0"){
+    next("route");
+  }else{
+    next();
+  }}, (request, response, next) => {
+    response.send("regular");
+});
+
+app.get("/app/:id", (request, response, next) => {
+  response.send("special");
 });
 
 app.listen(port, () => {
