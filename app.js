@@ -10,12 +10,19 @@ const birds = require("./guide/routing/birds.js");
 //app.use("/", routing);
 // use the middleware of the router of birds.
 app.use("/birds", birds);
-app.get('/users/:userId/books/:bookId', function (req, res) {
-  res.send(req.params)
-})
-app.get("/rooms/:roomid", (request, response, next) => {
-    response.send(request.params);
-    response.end();
+
+
+// middleware function
+function myLogger(request, response, next){
+  console.log("Logged at: ", Date.now());
+  next();
+}
+
+// use the middleware.
+app.use(myLogger);
+
+app.get("/", (request, response, next) => {
+    response.send("Hello, express.");
 });
 
 app.listen(port, () => {
