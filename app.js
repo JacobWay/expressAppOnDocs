@@ -11,21 +11,29 @@ const birds = require("./guide/routing/birds.js");
 // use the middleware of the router of birds.
 app.use("/birds", birds);
 
-app.get("/", (request, response, next) => {
-  console.log("Now: ", Date.now());
-  next();
-}, (request, response, next) => {
-    response.send("Hello, express.");
-});
-
 // middleware function
 function myLogger(request, response, next){
   console.log("Logged at: ", Date.now());
-  response.end();
+  next();
 }
 
 // use the middleware.
 app.use(myLogger);
+
+// middleware of requestTime
+function requestTime(request, response, next){
+  request.requestTime = Date.now();
+  next();
+}
+
+app.use(requestTime);
+
+app.get("/", (request, response, next) => {
+  responseText = "";
+  responseText += "<p>Hello, express.</p>";
+  responseText += "<small>request time: " + request.requestTime + "</small>";
+  response.send(responseText);
+});
 
 app.listen(port, () => {
     console.log(`express app listens on port ${port}`);
